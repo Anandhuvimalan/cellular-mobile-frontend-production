@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Local env files
+.env
+.env.local
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Misc
+.DS_Store
+*.swp
+*.swo
+
+# Source files not needed in production image
+src/
+*.ts
+*.tsx
+*.md
+tsconfig.json
+tailwind.config.*
+postcss.config.*
+next.config.js
+.eslintrc.*
+scripts/
