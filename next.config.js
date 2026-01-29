@@ -11,8 +11,8 @@ const nextConfig = {
   },
   generateBuildId: async () => process.env.NEXT_BUILD_ID || 'build-local',
   experimental: {
-    workerThreads: true,
-    webpackBuildWorker: false,
+    // workerThreads: false,
+    // webpackBuildWorker: false,
   },
 
 }
