@@ -8,7 +8,7 @@ import type {
   IMEINumber, DeadStockBatch, StockAdjustment
 } from '@/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://cellular-mobile-backened-production.up.railway.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 const LIST_CACHE_TTL_MS = 15000;
 const listCache = new Map<string, { timestamp: number; response: AxiosResponse<unknown> }>();

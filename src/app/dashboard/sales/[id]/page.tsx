@@ -8,7 +8,7 @@ import { FiPrinter, FiX } from 'react-icons/fi';
 import { formatDate, formatDateTime } from '@/lib/date';
 
 const getMediaBase = () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://cellular-mobile-backened-production.up.railway.app/api';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
   return apiUrl.replace(/\/api\/?$/, '');
 };
 
