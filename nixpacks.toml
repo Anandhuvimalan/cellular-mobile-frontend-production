@@ -1,0 +1,14 @@
+# Nixpacks configuration for Railway
+# This tells Railway to use Node.js native builder, not Docker
+
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npm run start"
