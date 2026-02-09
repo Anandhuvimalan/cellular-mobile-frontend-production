@@ -178,7 +178,7 @@ export default function Sidebar() {
       ['Sales History', 'Customers'].includes(item.name)
     ),
     system: filteredMenuItems.filter(item =>
-      ['Shops', 'Users', 'Notifications'].includes(item.name)
+      ['Shops', 'Users', 'Notifications', 'Settings'].includes(item.name)
     ),
   };
 
