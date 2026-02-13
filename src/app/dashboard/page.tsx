@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useMemo, useState } from 'react';
 import { dashboardAPI } from '@/lib/api';
@@ -820,52 +820,63 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="section-header">        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-        <div>
-          <p className="text-sm uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400">Performance Overview</p>
-          <h1 className="mt-2 text-3xl font-semibold text-slate-900 dark:text-slate-100">Analytics Command Center</h1>
-          <p className="mt-2 max-w-xl text-sm text-slate-700 dark:text-slate-300">
-            Sales, revenue, and profitability at a glance with PowerBI-level clarity.
+    <div className="space-y-8">
+      {/* Premium Header Section */}
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-600 dark:text-sky-300 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+            </span>
+            Real-time Analytics
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Analytics Command Center</h1>
+          <p className="max-w-lg text-base text-slate-600 dark:text-slate-400">
+            Real-time business intelligence with advanced data visualization and actionable insights across all metrics.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-transparent px-4 py-2 text-xs text-slate-700 dark:text-slate-200">
-            <FiBarChart2 className="h-4 w-4" />
-            Period: {analytics?.start_date} to {analytics?.end_date}
-          </div>
-          {isUpdating && (
-            <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-500/40 dark:border-emerald-400/30 bg-emerald-100 dark:bg-emerald-500/10 px-3 py-1 text-[11px] text-emerald-700 dark:text-emerald-200">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500 dark:bg-emerald-400" />
-              Live update in progress
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-300">
+              <FiBarChart2 className="h-4 w-4" />
+              {analytics?.start_date} to {analytics?.end_date}
             </div>
-          )}
-        </div>
-        <div className="grid w-full max-w-md grid-cols-2 gap-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-transparent p-4 text-sm lg:max-w-lg lg:grid-cols-3">
-          <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-transparent p-3">
-            <p className="text-xs text-slate-600 dark:text-slate-400">Revenue</p>
-            <p className="mt-2 text-lg font-semibold text-slate-900 dark:text-slate-100">{formatCurrency(analytics?.kpis.total_revenue || 0)}</p>
-          </div>
-          <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-transparent p-3">
-            <p className="text-xs text-slate-600 dark:text-slate-400">Profit</p>
-            <p className="mt-2 text-lg font-semibold text-slate-900 dark:text-slate-100">{formatCurrency(analytics?.kpis.total_profit || 0)}</p>
-          </div>
-          <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-transparent p-3">
-            <p className="text-xs text-slate-600 dark:text-slate-400">Orders</p>
-            <p className="mt-2 text-lg font-semibold text-slate-900 dark:text-slate-100">{analytics?.kpis.total_sales || 0}</p>
+            {isUpdating && (
+              <div className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/30 dark:border-emerald-400/20 bg-emerald-50 dark:bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-700 dark:text-emerald-200">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                Live update in progress
+              </div>
+            )}
           </div>
         </div>
-      </div>
+
+        {/* Key Metrics Summary Cards */}
+        <div className="grid w-full max-w-sm gap-3 lg:max-w-md">
+          <div className="rounded-xl border border-sky-500/20 bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-500/10 dark:to-blue-500/10 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-sky-600 dark:text-sky-300">Revenue</p>
+            <p className="mt-3 text-2xl font-bold text-sky-900 dark:text-sky-100">{formatCurrency(analytics?.kpis.total_revenue || 0)}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-500/10 dark:to-teal-500/10 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-300">Profit</p>
+              <p className="mt-2 text-lg font-bold text-emerald-900 dark:text-emerald-100">{formatCurrency(analytics?.kpis.total_profit || 0)}</p>
+            </div>
+            <div className="rounded-xl border border-amber-500/20 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-500/10 dark:to-orange-500/10 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-300">Orders</p>
+              <p className="mt-2 text-lg font-bold text-amber-900 dark:text-amber-100">{analytics?.kpis.total_sales || 0}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Filters */}
+      {/* Advanced Filters Card */}
       <div className="card text-slate-900 dark:text-slate-100">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Filter Scope</h2>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Refine analysis by time range and store performance.</p>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Filters & Controls</h2>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">Refine analysis by time period, metrics, and store performance</p>
           </div>
         </div>
-        <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-6">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6">
           {/* Period Filter */}
           <div>
             <SearchableSelect
@@ -936,59 +947,64 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {/* Premium KPI Cards Grid */}
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {kpiCards.map((kpi, index) => (
           <div
             key={index}
-            className="card relative overflow-hidden"
+            className="group relative overflow-hidden rounded-xl border border-slate-200/50 dark:border-white/5 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900/40 dark:to-slate-950/40 p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300 dark:hover:border-white/10 hover:-translate-y-1"
           >
-            <div className={`absolute inset-x-0 top-0 h-1 ${kpi.accent}`}></div>
+            {/* Background accent glow */}
+            <div className={`absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100 ${kpi.accent}`} style={{ backgroundImage: `linear-gradient(135deg, ${kpi.accent}, transparent)`, zIndex: -1 }} />
+            
+            {/* Top accent bar */}
+            <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${kpi.accent}`}></div>
+            
             <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400">{kpi.title}</p>
-                <p className={`mt-3 text-2xl font-semibold ${kpi.valueColor}`}>{kpi.value}</p>
+              <div className="flex-1">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">{kpi.title}</p>
+                <p className={`mt-3 text-3xl font-bold ${kpi.valueColor}`}>{kpi.value}</p>
                 {kpi.subtitle && (
-                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{kpi.subtitle}</p>
+                  <p className="mt-2 text-xs font-medium text-slate-600 dark:text-slate-400">{kpi.subtitle}</p>
                 )}
               </div>
-              <div className="rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-transparent p-3">
-                <kpi.icon className={`h-6 w-6 ${kpi.iconColor}`} />
+              <div className={`rounded-2xl bg-gradient-to-br ${kpi.lightGradient} dark:from-white/5 dark:to-transparent border border-slate-200/50 dark:border-white/10 p-4 shadow-sm`}>
+                <kpi.icon className={`h-8 w-8 ${kpi.iconColor}`} />
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Power BI Style Compact Analytics Layout */}
-      <div className="space-y-5">
-        {/* Row 1: Sales Trend & Revenue vs Profit (2 Columns) */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+      {/* Advanced Analytics Grid */}
+      <div className="space-y-6">
+        {/* Row 1: Sales Trend & Revenue vs Profit */}
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
           {/* Sales Trend */}
           <div className="card text-slate-900 dark:text-slate-100">
-            <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Trend Analysis</h2>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
-                  Current vs previous period performance ({performanceMetricLabel})
+                <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Trend Analysis</h2>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                  Current vs previous period {performanceMetricLabel}
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-transparent px-4 py-2 text-xs text-slate-700 dark:text-slate-300 shadow-sm">
-                <div className="font-semibold text-slate-900 dark:text-slate-200">
+              <div className="rounded-xl border border-sky-500/30 bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-500/10 dark:to-blue-500/5 px-5 py-3 text-sm">
+                <div className="font-bold text-sky-900 dark:text-sky-100">
                   {performanceMetric === 'orders' ? currentTotal.toLocaleString('en-IN') : formatCurrency(currentTotal)}
                 </div>
-                <div className={`mt-1 text-[11px] ${delta >= 0 ? 'text-emerald-600 dark:text-emerald-200' : 'text-rose-600 dark:text-rose-300'}`}>
-                  {delta >= 0 ? '+' : ''}{performanceMetric === 'orders' ? delta.toLocaleString('en-IN') : formatCurrency(delta)} ({deltaPct.toFixed(1)}%)
+                <div className={`mt-2 text-xs font-semibold ${delta >= 0 ? 'text-emerald-600 dark:text-emerald-300' : 'text-rose-600 dark:text-rose-300'}`}>
+                  {delta >= 0 ? '↑' : '↓'} {performanceMetric === 'orders' ? delta.toLocaleString('en-IN') : formatCurrency(Math.abs(delta))} ({Math.abs(deltaPct).toFixed(1)}%)
                 </div>
               </div>
             </div>
-            <div className="mt-2">
+            <div>
               {!analytics?.sales_trend?.length ? (
-                <div className="text-center py-12 bg-slate-50 dark:bg-transparent rounded-lg">
-                  <p className="text-slate-600 dark:text-slate-400 text-sm">No sales data</p>
+                <div className="flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 py-16">
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">No sales data available</p>
                 </div>
               ) : (
-                <div className="w-full rounded-lg bg-slate-50 dark:bg-transparent p-3">
+                <div className="w-full rounded-lg bg-slate-50/50 dark:bg-white/5 p-4">
                   <div className="h-[360px]">
                     <Line data={salesTrendData} options={salesTrendOptions} />
                   </div>
@@ -999,17 +1015,17 @@ export default function DashboardPage() {
 
           {/* Revenue vs Profit */}
           <div className="card text-slate-900 dark:text-slate-100">
-            <div className="mb-3">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Revenue vs Profit Analysis</h2>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Margin efficiency with profit trends</p>
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Revenue vs Profit Analysis</h2>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Margin efficiency with profit trends</p>
             </div>
-            <div className="mt-2">
+            <div>
               {!analytics?.sales_trend?.length ? (
-                <div className="text-center py-12 bg-slate-50 dark:bg-transparent rounded-lg">
-                  <p className="text-slate-600 dark:text-slate-400 text-sm">No comparison data</p>
+                <div className="flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 py-16">
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">No comparison data available</p>
                 </div>
               ) : (
-                <div className="w-full rounded-lg bg-slate-50 dark:bg-transparent p-3">
+                <div className="w-full rounded-lg bg-slate-50/50 dark:bg-white/5 p-4">
                   <div className="h-[360px]">
                     <Chart type="bar" data={revenueVsProfitData} options={revenueVsProfitOptions} />
                   </div>
@@ -1019,21 +1035,21 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Row 2: Shop Performance & Top Products (2 Columns) */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+        {/* Row 2: Shop Performance & Top Products */}
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
           {/* Shop Performance */}
           <div className="card text-slate-900 dark:text-slate-100">
-            <div className="mb-3">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Shop Performance</h2>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">{performanceMetricLabel} by location</p>
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Shop Performance</h2>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{performanceMetricLabel} by location</p>
             </div>
-            <div className="mt-2">
+            <div>
               {!analytics?.shop_sales?.length ? (
-                <div className="text-center py-12 bg-slate-50 dark:bg-transparent rounded-lg">
-                  <p className="text-slate-600 dark:text-slate-400 text-sm">No shop data</p>
+                <div className="flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 py-16">
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">No shop data available</p>
                 </div>
               ) : (
-                <div className="w-full rounded-lg bg-slate-50 dark:bg-transparent p-3">
+                <div className="w-full rounded-lg bg-slate-50/50 dark:bg-white/5 p-4">
                   <div className="h-[360px]">
                     <Bar data={shopPerformanceData} options={shopPerformanceOptions} />
                   </div>
@@ -1044,17 +1060,17 @@ export default function DashboardPage() {
 
           {/* Top Products */}
           <div className="card text-slate-900 dark:text-slate-100">
-            <div className="mb-3">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Top Products by {performanceMetricLabel}</h2>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Best selling items by {performanceMetricLabel.toLowerCase()}</p>
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Top Products by {performanceMetricLabel}</h2>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Best selling items by {performanceMetricLabel.toLowerCase()}</p>
             </div>
-            <div className="mt-2">
+            <div>
               {!analytics?.top_products?.length ? (
-                <div className="text-center py-12 bg-slate-50 dark:bg-transparent rounded-lg">
-                  <p className="text-slate-600 dark:text-slate-400 text-sm">No product data</p>
+                <div className="flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 py-16">
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">No product data available</p>
                 </div>
               ) : (
-                <div className="w-full rounded-lg bg-slate-50 dark:bg-transparent p-3">
+                <div className="w-full rounded-lg bg-slate-50/50 dark:bg-white/5 p-4">
                   <div className="h-[360px]">
                     <Bar data={topProductsData} options={topProductsOptions} />
                   </div>
@@ -1064,21 +1080,21 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Row 3: Payment Methods & Condition Analysis (2 Columns) */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+        {/* Row 3: Payment Methods & Condition Analysis */}
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
           {/* Payment Methods */}
           <div className="card text-slate-900 dark:text-slate-100">
-            <div className="mb-3">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Payment Methods Distribution</h2>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Customer transactions by payment method</p>
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Payment Methods Distribution</h2>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Customer transactions by payment method</p>
             </div>
-            <div className="mt-2">
+            <div>
               {!analytics?.payment_methods?.length ? (
-                <div className="text-center py-12 bg-slate-50 dark:bg-transparent rounded-lg">
-                  <p className="text-slate-600 dark:text-slate-400 text-sm">No payment data</p>
+                <div className="flex items-center justify-center rounded-lg bg-slate-50 dark:bg-white/5 py-16">
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">No payment data available</p>
                 </div>
               ) : (
-                <div className="w-full rounded-lg bg-white/5 p-3 flex justify-center">
+                <div className="w-full rounded-lg bg-slate-50/50 dark:bg-white/5 p-4 flex justify-center">
                   <div className="h-[360px] w-full">
                     <Doughnut data={paymentMethodsData} options={paymentMethodsOptions} />
                   </div>

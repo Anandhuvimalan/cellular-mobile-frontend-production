@@ -67,17 +67,17 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-slate-200/60 bg-white/70 backdrop-blur-xl transition-all duration-300 dark:border-slate-800/60 dark:bg-slate-950/70 text-slate-900 dark:text-slate-100">
+    <header className="sticky top-0 z-30 w-full border-b border-slate-200/40 bg-white/60 backdrop-blur-2xl transition-all duration-300 dark:border-white/5 dark:bg-slate-950/60 text-slate-900 dark:text-slate-100">
       <div className="relative flex flex-wrap items-center justify-between gap-4 px-6 py-4">
         <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500/80 dark:text-slate-400/80">
-            Command Center
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500/70 dark:text-slate-400/70">
+            System Control
           </p>
-          <div className="flex items-center gap-2">
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
               Welcome back,
             </h2>
-            <span className="bg-gradient-to-r from-sky-500 via-indigo-500 to-violet-500 bg-clip-text text-xl font-bold text-transparent">
+            <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 bg-clip-text text-lg font-bold text-transparent dark:from-sky-400 dark:via-blue-400 dark:to-cyan-400">
               {user?.first_name || user?.username}
             </span>
           </div>
