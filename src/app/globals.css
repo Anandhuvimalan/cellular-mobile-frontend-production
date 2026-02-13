@@ -223,31 +223,24 @@
 
 .card {
   border-radius: 1rem;
-  border: 1px solid rgba(199, 220, 240, 0.6);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 250, 255, 0.8) 100%);
+  border: 1px solid rgb(226, 232, 240);
+  background-color: rgb(255, 255, 255);
   padding: 1.5rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
-  border-color: rgba(56, 189, 248, 0.3);
-  box-shadow: 0 12px 40px rgba(56, 189, 248, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dark .card {
-  border-color: rgba(56, 189, 248, 0.2);
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(12, 20, 30, 0.7) 100%);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-color: rgb(30, 41, 59);
+  background-color: rgb(15, 23, 42);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .dark .card:hover {
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 12px 40px rgba(56, 189, 248, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -262,17 +255,11 @@
 }
 
 .loading-surface {
-  background:
-    radial-gradient(800px circle at 15% 20%, rgba(56, 189, 248, 0.15), transparent 60%),
-    radial-gradient(900px circle at 80% -10%, rgba(99, 102, 241, 0.12), transparent 60%),
-    linear-gradient(180deg, #f8fafc, #f1f5f9);
+  background: linear-gradient(180deg, #f8fafc, #f1f5f9);
 }
 
 .dark .loading-surface {
-  background:
-    radial-gradient(800px circle at 15% 20%, rgba(56, 189, 248, 0.22), transparent 60%),
-    radial-gradient(900px circle at 80% -10%, rgba(59, 130, 246, 0.2), transparent 60%),
-    linear-gradient(180deg, rgba(2, 6, 23, 1), rgba(15, 23, 42, 1));
+  background: linear-gradient(180deg, rgba(2, 6, 23, 1), rgba(15, 23, 42, 1));
 }
 
 .table {
