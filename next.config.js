@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone', // Required for Docker deployment
-  transpilePackages: ['react-icons'], // Ensure react-icons are bundled correctly
+  output: 'standalone',
+  transpilePackages: ['react-icons'],
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -10,10 +10,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   generateBuildId: async () => process.env.NEXT_BUILD_ID || 'build-local',
-  experimental: {
-    // workerThreads: false,
-    // webpackBuildWorker: false,
-  },
   env: {
     NEXT_PUBLIC_API_URL: 'https://cellular-mobile-backened-production.up.railway.app/api',
   },
@@ -26,7 +22,6 @@ const nextConfig = {
       },
     ]
   },
-
 }
 
 module.exports = nextConfig
