@@ -1,3 +1,4 @@
+/* Premium Dashboard Design - V2 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,7 +90,6 @@
   }
 }
 
-/* Stunning Ripple Effect */
 /* View Transition / Ripple Effect */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -98,16 +98,10 @@
   height: 100%;
 }
 
-/* Ensure the new view sits on top so the clip-path reveals it */
 ::view-transition-new(root) {
   z-index: 2147483646;
 }
 
-/* 
-   We disable the default cross-fade animation because we are manually 
-   animating the clip-path in JS.
-   (The JS sets the clip-path on the new root)
-*/
 .dark::view-transition-old(root) {
   z-index: 1;
 }
